@@ -38,6 +38,8 @@
 						<argument>-classpath</argument>
 						<classpath/>
 						<argument>de.dc.planetsudo.main.StartServer</argument>
+						<argument>-p</argument>
+						<argument>.</argument>
 					</arguments>
 				</configuration>
 			</plugin>
@@ -126,6 +128,11 @@
 			<groupId>tomcat</groupId>
 			<artifactId>tomcat-util</artifactId>
 			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-exec</artifactId>
+			<version>1.1</version>
 		</dependency>
 	</dependencies>
 </project>
