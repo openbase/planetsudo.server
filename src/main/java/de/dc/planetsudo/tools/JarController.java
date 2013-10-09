@@ -78,6 +78,7 @@ public final class JarController {
 
 	private void buildJar(final boolean clean) throws CouldNotPerformException {
 		synchronized (JAR_LOCK) {
+			SenactController.getInstance().setServerMode(SenactController.ServerMode.Compile);
 			try {
 				final CommandLine cmdLine = new CommandLine("mvn");
 				if (clean) {
@@ -106,8 +107,9 @@ public final class JarController {
 				}
 
 				jarBytes = FileUtils.readFileToByteArray(jarFile);
-
+				SenactController.getInstance().setServerMode(SenactController.ServerMode.NewPackage);
 			} catch (Exception ex) {
+				SenactController.getInstance().setServerMode(SenactController.ServerMode.Error);
 				throw new CouldNotPerformException("Could not build jar!", ex);
 			}
 		}

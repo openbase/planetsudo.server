@@ -130,7 +130,7 @@ public class LevelTwo extends AbstractStrategy {
 			}
 			@ Override
 			protected void action() {
-				agent.repaireMothership();
+				agent.repairMothership();
 			}
 		});
 		//-------------------------------------------->

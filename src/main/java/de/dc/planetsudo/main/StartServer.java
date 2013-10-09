@@ -12,6 +12,7 @@ import de.dc.planetsudo.main.command.SetStrategyPathCommand;
 import de.dc.planetsudo.main.command.SetStrategyServerSourceDirectory;
 import de.dc.planetsudo.main.command.SetTeamPathCommand;
 import de.dc.planetsudo.net.PlanetSudoServer;
+import de.dc.planetsudo.tools.SenactController;
 import de.dc.util.logging.Logger;
 import de.dc.util.view.Set2dDebug;
 import de.unibi.agai.clparser.CLParser;
@@ -40,7 +41,7 @@ public class StartServer {
 		CLParser.registerCommand(SetServerPort.class);
 		Logger.setDebugMode(false);
 		CLParser.analyseAndExitOnError(args);
-
+		SenactController.getInstance();
 		new PlanetSudoServer();
 	}
 }
