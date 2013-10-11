@@ -83,6 +83,9 @@ public class SenactController implements SenactInstanceInterface {
 
 	public void setColor(final Color color) {
 		try {
+			if(senactClientConnection == null) {
+				throw new CouldNotPerformException("Senact not conneced!");
+			}
 			senactClientConnection.sendCommand(new RGBLightCommand(color));
 		} catch (CouldNotPerformException ex) {
 			Logger.warn(this, "Could not control senact!", ex);
@@ -91,6 +94,9 @@ public class SenactController implements SenactInstanceInterface {
 
 	public void playSound(final Sound sound) {
 		try {
+			if(senactClientConnection == null) {
+				throw new CouldNotPerformException("Senact not conneced!");
+			}
 			senactClientConnection.sendCommand(new BuzzerCommand(sound));
 		} catch (CouldNotPerformException ex) {
 			Logger.warn(this, "Could not control senact!", ex);
