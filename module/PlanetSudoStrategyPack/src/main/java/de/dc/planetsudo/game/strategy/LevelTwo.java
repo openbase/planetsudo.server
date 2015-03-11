@@ -6,6 +6,7 @@
 package de.dc.planetsudo.game.strategy;
 
 import de.dc.planetsudo.level.levelobjects.Agent;
+import de.dc.planetsudo.level.levelobjects.AgentInterface;
 import de.dc.planetsudo.level.levelobjects.Resource;
 
 /**
@@ -17,7 +18,7 @@ public class LevelTwo extends AbstractStrategy {
 	public LevelTwo() {
 	}
 	
-	public LevelTwo(Agent a) {
+	public LevelTwo(AgentInterface a) {
 		super(a);
 	}
 
@@ -40,7 +41,7 @@ public class LevelTwo extends AbstractStrategy {
 			}
 			@ Override
 			protected void action() {
-				agent.goStraightAhead();
+				agent.go();
 			}
 		});
 		//-------------------------------------------->
@@ -58,7 +59,7 @@ public class LevelTwo extends AbstractStrategy {
 		createRule(new Rule(30, "PickUp Resource") {
 			@ Override
 			protected boolean constraint() {
-				return agent.touchResource() && agent.touchResourceType() != Resource.ResourceType.Mine;
+				return agent.isTouchingResource() && agent.getResourceType() != Resource.ResourceType.Mine;
 			}
 			@ Override
 			protected void action() {
@@ -73,7 +74,7 @@ public class LevelTwo extends AbstractStrategy {
 			}
 			@ Override
 			protected void action() {
-				agent.moveOneStepInTheMothershipDirection();
+				agent.goToMothership();
 			}
 		});
 		//-------------------------------------------->
@@ -84,7 +85,7 @@ public class LevelTwo extends AbstractStrategy {
 			}
 			@ Override
 			protected void action() {
-				agent.spendFuelTeamAgent(300);
+				agent.spendTeamAgentFuel(300);
 			}
 		});
 		//-------------------------------------------->
@@ -115,18 +116,18 @@ public class LevelTwo extends AbstractStrategy {
 		createRule(new Rule(110, "SaveMothership") {
 			@ Override
 			protected boolean constraint() {
-				return agent.getMothership().isDamaged();
+				return mothership.isDamaged();
 			}
 			@ Override
 			protected void action() {
-				agent.moveOneStepInTheMothershipDirection();
+				agent.goToMothership();
 			}
 		});
 		//-------------------------------------------->
 		createRule(new Rule(120, "RepaireMothership") {
 			@ Override
 			protected boolean constraint() {
-				return agent.getMothership().isDamaged() && agent.isAtMothership();
+				return mothership.isDamaged() && agent.isAtMothership();
 			}
 			@ Override
 			protected void action() {
@@ -152,7 +153,7 @@ public class LevelTwo extends AbstractStrategy {
 			}
 			@ Override
 			protected void action() {
-				agent.moveOneStepInTheMothershipDirection();
+				agent.goToMothership();
 			}
 		});
 		//-------------------------------------------->
@@ -192,7 +193,7 @@ public class LevelTwo extends AbstractStrategy {
 		createRule(new Rule(1000, "AvoidWall") {
 			@ Override
 			protected boolean constraint() {
-				return agent.collisionDetected();
+				return agent.isCollisionDetected();
 			}
 			@ Override
 			protected void action() {

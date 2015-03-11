@@ -4,13 +4,13 @@
  */
 package de.dc.planetsudo.net;
 
+import de.citec.jps.core.JPService;
 import de.dc.planetsudo.game.Team;
 import de.dc.planetsudo.game.TeamData;
 import de.dc.planetsudo.main.command.SetStrategyServerSourceDirectory;
 import de.dc.planetsudo.tools.JarController;
 import de.dc.util.exceptions.CouldNotPerformException;
 import de.dc.util.logging.Logger;
-import de.unibi.agai.clparser.CLParser;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -89,7 +89,7 @@ public class PlanetSudoClientHandler implements Runnable {
 	private void downloadDefaultStrategy() throws IOException {
 		Logger.info(this, "Download default strategy!");
 		final String sourceFileName = in.readUTF();
-		final File sourceFile = new File(CLParser.getAttribute(SetStrategyServerSourceDirectory.class).getValue(), sourceFileName);
+		final File sourceFile = new File(JPService.getProperty(SetStrategyServerSourceDirectory.class).getValue(), sourceFileName);
 		final int fileByteLenght = in.readInt();
 		final byte[] fileBytes = new byte[fileByteLenght];
 		IOUtils.readFully(in, fileBytes);

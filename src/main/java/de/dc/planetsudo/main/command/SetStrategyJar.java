@@ -5,9 +5,9 @@
 
 package de.dc.planetsudo.main.command;
 
-import de.unibi.agai.clparser.CLParser;
-import de.unibi.agai.clparser.command.AbstractCLFile;
-import de.unibi.agai.tools.FileHandler;
+import de.citec.jps.core.JPService;
+import de.citec.jps.preset.AbstractJPFile;
+import de.citec.jps.tools.FileHandler;
 import java.io.File;
 
 
@@ -15,7 +15,7 @@ import java.io.File;
  *
  * @author divine
  */
-public class SetStrategyJar extends AbstractCLFile {
+public class SetStrategyJar extends AbstractJPFile {
 	public final static String[] COMMAND_IDENTIFIERS = {"--buildTarget"};
 	public final static String[] ARGUMENT_IDENTIFIERS = {"PATH"};
 
@@ -29,7 +29,7 @@ public class SetStrategyJar extends AbstractCLFile {
 	}
 
 	@Override
-	protected File getCommandDefaultValue() {
-		return new File(CLParser.getAttribute(SetBuildTargetDirectory.class).getValue().getAbsolutePath()+"/strategy-2.0.0-SNAPSHOT.jar");
+	protected File getPropertyDefaultValue() {
+		return new File(JPService.getAttribute(SetBuildTargetDirectory.class).getValue().getAbsolutePath()+"/strategy-2.0.0-SNAPSHOT.jar");
 	}
 }

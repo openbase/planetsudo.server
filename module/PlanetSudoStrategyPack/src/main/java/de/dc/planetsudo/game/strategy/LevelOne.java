@@ -6,6 +6,7 @@
 package de.dc.planetsudo.game.strategy;
 
 import de.dc.planetsudo.level.levelobjects.Agent;
+import de.dc.planetsudo.level.levelobjects.AgentInterface;
 import de.dc.planetsudo.level.levelobjects.Resource;
 
 /**
@@ -16,7 +17,7 @@ public class LevelOne extends AbstractStrategy {
 
 	public LevelOne() {
 	}
-	public LevelOne(Agent a) {
+	public LevelOne(AgentInterface a) {
 		super(a);
 	}
 
@@ -39,7 +40,7 @@ public class LevelOne extends AbstractStrategy {
 			}
 			@ Override
 			protected void action() {
-				agent.goStraightAhead();
+				agent.go();
 			}
 		});
 		//-------------------------------------------->
@@ -57,7 +58,7 @@ public class LevelOne extends AbstractStrategy {
 		createRule(new Rule(30, "PickUp Resource") {
 			@ Override
 			protected boolean constraint() {
-				return agent.touchResource() && agent.touchResourceType() != Resource.ResourceType.Mine;
+				return agent.isTouchingResource() && agent.getResourceType() != Resource.ResourceType.Mine;
 			}
 			@ Override
 			protected void action() {
@@ -72,7 +73,7 @@ public class LevelOne extends AbstractStrategy {
 			}
 			@ Override
 			protected void action() {
-				agent.moveOneStepInTheMothershipDirection();
+				agent.goToMothership();
 			}
 		});
 		//-------------------------------------------->
@@ -94,7 +95,7 @@ public class LevelOne extends AbstractStrategy {
 			}
 			@ Override
 			protected void action() {
-				agent.moveOneStepInTheMothershipDirection();
+				agent.goToMothership();
 			}
 		});
 		//-------------------------------------------->
@@ -112,7 +113,7 @@ public class LevelOne extends AbstractStrategy {
 		createRule(new Rule(1000, "AvoidWall") {
 			@ Override
 			protected boolean constraint() {
-				return agent.collisionDetected();
+				return agent.isCollisionDetected();
 			}
 			@ Override
 			protected void action() {

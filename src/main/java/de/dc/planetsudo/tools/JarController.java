@@ -4,11 +4,11 @@
  */
 package de.dc.planetsudo.tools;
 
+import de.citec.jps.core.JPService;
 import de.dc.planetsudo.main.command.SetStrategyJar;
 import de.dc.planetsudo.main.command.SetStrategyModuleDirectory;
 import de.dc.util.exceptions.CouldNotPerformException;
 import de.dc.util.logging.Logger;
-import de.unibi.agai.clparser.CLParser;
 import java.io.File;
 import org.apache.commons.exec.CommandLine;
 import org.apache.commons.exec.DefaultExecutor;
@@ -28,8 +28,8 @@ public final class JarController {
 	private final File projectDirectory;
 
 	private JarController() {
-		this.jarFile = CLParser.getAttribute(SetStrategyJar.class).getValue();
-		this.projectDirectory = CLParser.getAttribute(SetStrategyModuleDirectory.class).getValue();
+		this.jarFile = JPService.getProperty(SetStrategyJar.class).getValue();
+		this.projectDirectory = JPService.getProperty(SetStrategyModuleDirectory.class).getValue();
 		this.jarBytes = null;
 	}
 

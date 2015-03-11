@@ -4,17 +4,15 @@
  */
 package de.dc.planetsudo.net;
 
+import de.citec.jps.core.JPService;
 import de.dc.planetsudo.game.LevelReciver;
 import de.dc.planetsudo.game.TeamData;
 import de.dc.planetsudo.main.command.SetServerPort;
 import de.dc.util.logging.Logger;
-import de.unibi.agai.clparser.CLParser;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.logging.Level;
 
 /**
@@ -40,7 +38,7 @@ public class PlanetSudoServer implements Runnable {
 		while (true) {
 			while (true) {
 				try {
-					serverSocked = new ServerSocket(CLParser.getAttribute(SetServerPort.class).getValue());
+					serverSocked = new ServerSocket(JPService.getProperty(SetServerPort.class).getValue());
 					break;
 				} catch (IOException ex) {
 					Logger.error(this, "Could not bind Port! Try again in 10 Sec..", ex);

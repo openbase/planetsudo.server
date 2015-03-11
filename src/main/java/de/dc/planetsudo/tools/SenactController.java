@@ -4,6 +4,7 @@
  */
 package de.dc.planetsudo.tools;
 
+import de.dc.util.data.Color;
 import de.dc.util.exceptions.CouldNotPerformException;
 import de.dc.util.logging.Logger;
 import de.dc.util.senact.SenactClientConnection;
@@ -14,7 +15,6 @@ import de.dc.util.senact.commands.BuzzerCommand.Sound;
 import de.dc.util.senact.commands.MotionDetectorCommand;
 import de.dc.util.senact.commands.MotionDetectorCommand.MotionState;
 import de.dc.util.senact.commands.RGBLightCommand;
-import java.awt.Color;
 
 /**
  *
@@ -22,9 +22,9 @@ import java.awt.Color;
  */
 public class SenactController implements SenactInstanceInterface {
 
-	private Color S_GREEN = new Color(0, 50, 0);
-	private Color S_BLUE = new Color(0, 0, 100);
-	private Color S_RED = new Color(100, 0, 0);
+	private Color S_GREEN = new Color(0, 255, 0);
+	private Color S_BLUE = new Color(0, 0, 255);
+	private Color S_RED = new Color(255, 0, 0);
 
 	public enum ServerMode {
 		Compile,
@@ -54,14 +54,16 @@ public class SenactController implements SenactInstanceInterface {
 				break;
 			case Compile:
 				setColor(S_GREEN);
-				playSound(Sound.Monkey);
+				playSound(Sound.Confirm);
 				break;
 			case Error:
 				setColor(S_RED);
-				playSound(Sound.S3);
+				playSound(Sound.S1);
 				break;
 		}
 	}
+
+
 
 	private SenactController() {
 		senactServerService = new SenactServerService(this);
@@ -69,6 +71,7 @@ public class SenactController implements SenactInstanceInterface {
 
 	public void setSenactClientConnection(SenactClientConnection senactClientConnection) {
 		this.senactClientConnection = senactClientConnection;
+		playSound(Sound.Monkey);
 	}
 
 	@Override
