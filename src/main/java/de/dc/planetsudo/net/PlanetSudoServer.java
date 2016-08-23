@@ -17,7 +17,7 @@ import java.util.logging.Level;
 
 /**
  *
- * @author Divine <DivineThreepwood@gmail.com>
+ * @author <a href="mailto:DivineThreepwood@gmail.com">Divine Threepwood</a>
  */
 public class PlanetSudoServer implements Runnable {
 

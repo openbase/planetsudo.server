@@ -18,7 +18,7 @@ import de.dc.util.senact.commands.RGBLightCommand;
 
 /**
  *
- * @author Divine <DivineThreepwood@gmail.com>
+ * @author <a href="mailto:DivineThreepwood@gmail.com">Divine Threepwood</a>
  */
 public class SenactController implements SenactInstanceInterface {
 

@@ -30,6 +30,6 @@ public class SetStrategyJar extends AbstractJPFile {
 
 	@Override
 	protected File getPropertyDefaultValue() {
-		return new File(JPService.getAttribute(SetBuildTargetDirectory.class).getValue().getAbsolutePath()+"/strategy-2.0.0-SNAPSHOT.jar");
+		return new File(JPService.getProperty(SetBuildTargetDirectory.class).getValue().getAbsolutePath()+"/strategy-2.0.0-SNAPSHOT.jar");
 	}
 }

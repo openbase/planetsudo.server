@@ -23,7 +23,7 @@ import de.dc.planetsudo.level.levelobjects.Resource;
 
 /**
  *
- * @author Divine <DivineThreepwood@gmail.com>
+ * @author <a href="mailto:DivineThreepwood@gmail.com">Divine Threepwood</a>
  */
 public class MobbyDickStrategy extends AbstractStrategy {
 

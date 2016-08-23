@@ -22,7 +22,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
- * @author Divine <DivineThreepwood@gmail.com>
+ * @author <a href="mailto:DivineThreepwood@gmail.com">Divine Threepwood</a>
  */
 public class PlanetSudoClientHandler implements Runnable {
 

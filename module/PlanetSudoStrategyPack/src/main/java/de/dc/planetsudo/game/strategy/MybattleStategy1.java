@@ -21,7 +21,7 @@ import de.dc.planetsudo.level.levelobjects.Resource;
 
 /**
  *
- * @author Divine <DivineThreepwood@gmail.com>
+ * @author <a href="mailto:DivineThreepwood@gmail.com">Divine Threepwood</a>
  */
 public class MybattleStategy1 extends AbstractStrategy {
 

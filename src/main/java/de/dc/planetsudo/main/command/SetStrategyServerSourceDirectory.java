@@ -30,6 +30,6 @@ public class SetStrategyServerSourceDirectory extends AbstractJPDirectory {
 
 	@Override
 	protected File getPropertyDefaultValue() {
-		return new File(JPService.getAttribute(SetStrategyModuleDirectory.class).getValue().getAbsolutePath()+"/src/main/java/de/dc/planetsudo/game/strategy");
+		return new File(JPService.getProperty(SetStrategyModuleDirectory.class).getValue().getAbsolutePath()+"/src/main/java/de/dc/planetsudo/game/strategy");
 	}
 }
