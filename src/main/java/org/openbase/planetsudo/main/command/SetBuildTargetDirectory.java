@@ -3,11 +3,11 @@
  * and open the template in the editor.
  */
 
-package de.dc.planetsudo.main.command;
+package org.openbase.planetsudo.main.command;
 
-import de.citec.jps.core.JPService;
-import de.citec.jps.preset.AbstractJPDirectory;
-import de.citec.jps.tools.FileHandler;
+import org.openbase.jps.core.JPService;
+import org.openbase.jps.preset.AbstractJPDirectory;
+import org.openbase.jps.tools.FileHandler;
 import java.io.File;
 
 

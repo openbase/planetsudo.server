@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.dc.planetsudo.game.strategy;
+package org.openbase.planetsudo.game.strategy;
 
-import de.dc.planetsudo.level.levelobjects.AgentInterface;
-import de.dc.planetsudo.level.levelobjects.Resource.ResourceType;
+import org.openbase.planetsudo.level.levelobjects.AgentInterface;
+import org.openbase.planetsudo.level.levelobjects.Resource.ResourceType;
 
 /**
  *

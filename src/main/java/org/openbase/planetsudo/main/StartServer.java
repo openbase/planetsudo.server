@@ -2,20 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.dc.planetsudo.main;
+package org.openbase.planetsudo.main;
 
-import de.citec.jps.core.JPService;
-import de.citec.jps.preset.JPDebugMode;
-import de.citec.jps.preset.JPPrefix;
-import de.dc.planetsudo.main.command.SetBuildTargetDirectory;
-import de.dc.planetsudo.main.command.SetServerPort;
-import de.dc.planetsudo.main.command.SetStrategyModuleDirectory;
-import de.dc.planetsudo.main.command.SetStrategyPathCommand;
-import de.dc.planetsudo.main.command.SetStrategyServerSourceDirectory;
-import de.dc.planetsudo.main.command.SetTeamPathCommand;
-import de.dc.planetsudo.net.PlanetSudoServer;
-import de.dc.planetsudo.tools.SenactController;
-import de.dc.util.logging.Logger;
+import org.openbase.jps.core.JPService;
+import org.openbase.jps.preset.JPDebugMode;
+import org.openbase.jps.preset.JPPrefix;
+import org.openbase.planetsudo.main.command.SetBuildTargetDirectory;
+import org.openbase.planetsudo.jp.SetServerPort;
+import org.openbase.planetsudo.main.command.SetStrategyModuleDirectory;
+import org.openbase.planetsudo.jp.SetStrategyPathCommand;
+import org.openbase.planetsudo.main.command.SetStrategyServerSourceDirectory;
+import org.openbase.planetsudo.jp.SetTeamPathCommand;
+import org.openbase.planetsudo.net.PlanetSudoServer;
+import org.openbase.planetsudo.tools.SenactController;
+import org.openbase.util.logging.Logger;
 import java.io.File;
 
 /**

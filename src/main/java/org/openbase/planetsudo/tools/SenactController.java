@@ -2,19 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.dc.planetsudo.tools;
+package org.openbase.planetsudo.tools;
 
-import de.dc.util.data.Color;
-import de.dc.util.exceptions.CouldNotPerformException;
-import de.dc.util.logging.Logger;
-import de.dc.util.senact.SenactClientConnection;
-import de.dc.util.senact.SenactInstanceInterface;
-import de.dc.util.senact.SenactServerService;
-import de.dc.util.senact.commands.BuzzerCommand;
-import de.dc.util.senact.commands.BuzzerCommand.Sound;
-import de.dc.util.senact.commands.MotionDetectorCommand;
-import de.dc.util.senact.commands.MotionDetectorCommand.MotionState;
-import de.dc.util.senact.commands.RGBLightCommand;
+import org.openbase.util.data.Color;
+import org.openbase.util.exceptions.CouldNotPerformException;
+import org.openbase.util.logging.Logger;
+import org.openbase.util.senact.SenactClientConnection;
+import org.openbase.util.senact.SenactInstanceInterface;
+import org.openbase.util.senact.SenactServerService;
+import org.openbase.util.senact.commands.BuzzerCommand;
+import org.openbase.util.senact.commands.BuzzerCommand.Sound;
+import org.openbase.util.senact.commands.MotionDetectorCommand;
+import org.openbase.util.senact.commands.MotionDetectorCommand.MotionState;
+import org.openbase.util.senact.commands.RGBLightCommand;
 
 /**
  *

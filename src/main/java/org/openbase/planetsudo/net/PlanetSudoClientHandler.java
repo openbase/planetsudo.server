@@ -2,15 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.dc.planetsudo.net;
+package org.openbase.planetsudo.net;
 
-import de.citec.jps.core.JPService;
-import de.dc.planetsudo.game.Team;
-import de.dc.planetsudo.game.TeamData;
-import de.dc.planetsudo.main.command.SetStrategyServerSourceDirectory;
-import de.dc.planetsudo.tools.JarController;
-import de.dc.util.exceptions.CouldNotPerformException;
-import de.dc.util.logging.Logger;
+import org.openbase.jps.core.JPService;
+import org.openbase.planetsudo.game.Team;
+import org.openbase.planetsudo.game.TeamData;
+import org.openbase.planetsudo.main.command.SetStrategyServerSourceDirectory;
+import org.openbase.planetsudo.tools.JarController;
+import org.openbase.util.exceptions.CouldNotPerformException;
+import org.openbase.util.logging.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;

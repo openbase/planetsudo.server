@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.dc.planetsudo.net;
+package org.openbase.planetsudo.net;
 
-import de.citec.jps.core.JPService;
-import de.dc.planetsudo.game.LevelReciver;
-import de.dc.planetsudo.game.TeamData;
-import de.dc.planetsudo.main.command.SetServerPort;
-import de.dc.util.logging.Logger;
+import org.openbase.jps.core.JPService;
+import org.openbase.planetsudo.game.LevelReciver;
+import org.openbase.planetsudo.game.TeamData;
+import org.openbase.planetsudo.jp.SetServerPort;
+import org.openbase.util.logging.Logger;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

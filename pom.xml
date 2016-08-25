@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>de.dc.planetsudo</groupId>
-	<artifactId>server</artifactId>
-	<version>2.0.0-SNAPSHOT</version>
+	<groupId>org.openbase</groupId>
+	<artifactId>planetsudo.server</artifactId>
+	<version>3.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>PlanetSudoServer</name>
@@ -31,7 +31,7 @@
 					<arguments>
 						<argument>-classpath</argument>
 						<classpath/>
-						<argument>de.dc.planetsudo.main.StartServer</argument>
+						<argument>org.openbase.planetsudo.main.StartServer</argument>
 						<argument>-p</argument>
 						<argument>.</argument>
 					</arguments>
@@ -43,7 +43,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>de.dc.planetsudo.main.StartServer</mainClass>
+							<mainClass>org.openbase.planetsudo.main.StartServer</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -115,7 +115,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>de.dc</groupId>
+			<groupId>org.openbase</groupId>
 			<artifactId>planetsudo</artifactId>
 			<version>2.0.0-SNAPSHOT</version>
 		</dependency>

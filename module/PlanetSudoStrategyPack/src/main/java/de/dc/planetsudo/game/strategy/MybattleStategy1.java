@@ -14,10 +14,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.dc.planetsudo.game.strategy;
+package org.openbase.planetsudo.game.strategy;
 
-import de.dc.planetsudo.level.levelobjects.AgentInterface;
-import de.dc.planetsudo.level.levelobjects.Resource;
+import org.openbase.planetsudo.level.levelobjects.AgentInterface;
+import org.openbase.planetsudo.level.levelobjects.Resource;
 
 /**
  *
