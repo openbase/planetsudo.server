@@ -4,16 +4,39 @@
  */
 package org.openbase.planetsudo.net;
 
+/*-
+ * #%L
+ * PlanetSudo Server
+ * %%
+ * Copyright (C) 2009 - 2016 openbase.org
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
+
 import org.openbase.jps.core.JPService;
 import org.openbase.planetsudo.game.LevelReciver;
 import org.openbase.planetsudo.game.TeamData;
-import org.openbase.planetsudo.jp.SetServerPort;
-import org.openbase.util.logging.Logger;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.util.logging.Level;
+import org.openbase.jps.exception.JPNotAvailableException;
+import org.openbase.planetsudo.jp.JPServerPort;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -21,6 +44,8 @@ import java.util.logging.Level;
  */
 public class PlanetSudoServer implements Runnable {
 
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(PlanetSudoServer.class);
+    
 	private ServerSocket serverSocked;
 
 	public PlanetSudoServer() {
@@ -33,15 +58,15 @@ public class PlanetSudoServer implements Runnable {
 
 	@Override
 	public void run() {
-		Logger.info(this, "Setup connection...");
+		LOGGER.info("Setup connection...");
 
 		while (true) {
 			while (true) {
 				try {
-					serverSocked = new ServerSocket(JPService.getProperty(SetServerPort.class).getValue());
+					serverSocked = new ServerSocket(JPService.getProperty(JPServerPort.class).getValue());
 					break;
-				} catch (IOException ex) {
-					Logger.error(this, "Could not bind Port! Try again in 10 Sec..", ex);
+				} catch (IOException | JPNotAvailableException ex) {
+					LOGGER.error("Could not bind Port! Try again in 10 Sec..", ex);
 				}
 				try {
 					Thread.sleep(10000);
@@ -49,77 +74,32 @@ public class PlanetSudoServer implements Runnable {
 					java.util.logging.Logger.getLogger(LevelReciver.class.getName()).log(Level.SEVERE, null, ex);
 				}
 			}
-			Logger.info(this, "Server online.");
+			LOGGER.info("Server online.");
 
 			try {
 				while (true) {
-					Logger.info(this, "Wait for client...");
+					LOGGER.info("Wait for client...");
 					new PlanetSudoClientHandler(serverSocked.accept());
 				}
 			} catch (IOException ex) {
-				Logger.warn(this, "Binding lost!", ex);
+				LOGGER.warn("Binding lost!", ex);
 			} finally {
 				if (serverSocked != null) {
 					try {
 						serverSocked.close();
 					} catch (IOException ex) {
-						Logger.debug(this, "Connection broken!", ex);
+						LOGGER.debug("Connection broken!", ex);
 					}
 				}
 			}
-			Logger.info(this, "Rebind port...");
+			LOGGER.info("Rebind port...");
 		}
 	}
 
 	private void reciveTeam(ObjectInputStream in, ObjectOutputStream out) throws IOException, ClassNotFoundException {
 //		File strategyFileSend = (File) in.readObject();
-//		Logger.info(this, "####### Incomming class name is:" + strategyFileSend.getName());
+//		LOGGER.info("####### Incomming class name is:" + strategyFileSend.getName());
 		TeamData teamData = (TeamData) in.readObject();
-		Logger.info(this, "Got Team" + teamData.getName());
-
-
-
-
-//		int res = JOptionPane.showConfirmDialog(MainGUI.getInstance(),
-//				"Jemand möchte mit dir seine KI tauschen. Stimmst du dem zu?",
-//				"Team empfangen",
-//				JOptionPane.YES_NO_OPTION);
-//		Logger.debug(this, "Res is" + res);
-//		if (res == JOptionPane.NO_OPTION) {
-//			out.writeObject(new Boolean(false));
-//			return;
-//		} else {
-//			out.writeObject(new Boolean(true));
-//		}
-//		Team defaultTeamTmp = MainGUI.getInstance().getConfigurationPanel().getDefaultTeam();
-//		out.writeObject(new Boolean(defaultTeamTmp == null));
-//		if (defaultTeamTmp == null) {
-//			JOptionPane.showMessageDialog(MainGUI.getInstance(),
-//					"Du hast kein DefaultTeam ausgesucht! Breche Transfer ab!",
-//					"Cancel",
-//					JOptionPane.ERROR_MESSAGE);
-//			return;
-//		}
-//
-//
-//		URL strategyURL = defaultTeamTmp.getStrategy().getResource(defaultTeamTmp.getStrategy().getSimpleName() + ".class");
-//		try {
-//			File strategyFile = new File(strategyURL.toURI());
-//			out.writeObject(strategyFile);
-//		} catch (URISyntaxException ex) {
-//			java.util.logging.Logger.getLogger(AINetworkTransferMenu.class.getName()).log(Level.SEVERE, null, ex);
-//		}
-//		try {
-//			Logger.info(this, "########### ClassLocation:" + strategyURL.toURI().toString());
-//		} catch (URISyntaxException ex) {
-//			java.util.logging.Logger.getLogger(AINetworkTransferMenu.class.getName()).log(Level.SEVERE, null, ex);
-//		}
-//
-//
-//
-//		out.writeObject(defaultTeamTmp);
-
-
-		//MainGUI.getInstance().getConfigurationPanel().updateTeamList();
+		LOGGER.info("Got Team" + teamData.getName());
 	}
 }

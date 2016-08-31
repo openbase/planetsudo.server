@@ -1,16 +1,31 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.openbase.planetsudo.net;
 
+/*-
+ * #%L
+ * PlanetSudo Server
+ * %%
+ * Copyright (C) 2009 - 2016 openbase.org
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
 import org.openbase.jps.core.JPService;
 import org.openbase.planetsudo.game.Team;
 import org.openbase.planetsudo.game.TeamData;
-import org.openbase.planetsudo.main.command.SetStrategyServerSourceDirectory;
+import org.openbase.planetsudo.jp.JPStrategyServerSourceDirectory;
 import org.openbase.planetsudo.tools.JarController;
-import org.openbase.util.exceptions.CouldNotPerformException;
-import org.openbase.util.logging.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,6 +34,10 @@ import java.net.Socket;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.openbase.jps.exception.JPNotAvailableException;
+import org.openbase.jul.exception.CouldNotPerformException;
+import org.openbase.jul.exception.printer.ExceptionPrinter;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -26,81 +45,86 @@ import org.apache.commons.io.IOUtils;
  */
 public class PlanetSudoClientHandler implements Runnable {
 
-	private final Socket socket;
-	private ObjectInputStream in = null;
-	private ObjectOutputStream out = null;
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(PlanetSudoClientHandler.class);
 
-	protected PlanetSudoClientHandler(final Socket socket) {
-		this.socket = socket;
-		Logger.info(this, "Connecting to Client[" + socket.getInetAddress() + "]");
-		new Thread(this, "ClientConnectionHandler").start();
-	}
+    private final Socket socket;
+    private ObjectInputStream in = null;
+    private ObjectOutputStream out = null;
 
-	@Override
-	public void run() {
-		try {
-			in = new ObjectInputStream(socket.getInputStream());
-			out = new ObjectOutputStream(socket.getOutputStream());
+    protected PlanetSudoClientHandler(final Socket socket) {
+        this.socket = socket;
+        LOGGER.info("Connecting to Client[" + socket.getInetAddress() + "]");
+        new Thread(this, "ClientConnectionHandler").start();
+    }
 
-			Logger.info(this, "Connection established!");
+    @Override
+    public void run() {
+        try {
+            in = new ObjectInputStream(socket.getInputStream());
+            out = new ObjectOutputStream(socket.getOutputStream());
 
-			downloadDefaultTeam();
-			downloadDefaultStrategy();
-			uploadTeams();
-			uploadStrategies();
-			Logger.info(this, "Sync finished.");
-		} catch (Exception ex) {
-			Logger.warn(this, "Connection error!", ex);
-			ex.printStackTrace();
-		} finally {
-			try {
-				if (in != null) {
-					in.close();
-				}
-				if (out != null) {
-					out.close();
-				}
+            LOGGER.info("Connection established!");
 
-				if (socket != null) {
-					socket.close();
-				}
-				Logger.info(this, "Connection closed.");
-			} catch (Exception ex) {
-				Logger.error(this, "Connection Lost");
-			}
-		}
-	}		
+            downloadDefaultTeam();
+            downloadDefaultStrategy();
+            uploadTeams();
+            uploadStrategies();
+            LOGGER.info("Sync finished.");
+        } catch (Exception ex) {
+            ExceptionPrinter.printHistory(new CouldNotPerformException("Connection error!", ex), LOGGER);
+        } finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
 
-	private void downloadDefaultTeam() throws IOException, ClassNotFoundException, CouldNotPerformException {
-		Logger.info(this, "Download default team!");
-		final TeamData defaultTeam = (TeamData) in.readObject();
-		Team.save(defaultTeam);
-	}
+                if (socket != null) {
+                    socket.close();
+                }
+                LOGGER.info("Connection closed.");
+            } catch (Exception ex) {
+                LOGGER.error("Connection Lost");
+            }
+        }
+    }
 
-	private void uploadTeams() throws CouldNotPerformException, IOException {
-		Logger.info(this, "Upload teams...");
-		List<TeamData> teams = Team.loadAll();
-		out.writeInt(teams.size());
-		for(TeamData teamData : teams) {
-			out.writeObject(teamData);
-		}
-	}
+    private void downloadDefaultTeam() throws IOException, ClassNotFoundException, CouldNotPerformException {
+        LOGGER.info("Download default team!");
+        final TeamData defaultTeam = (TeamData) in.readObject();
+        Team.save(defaultTeam);
+    }
 
-	private void downloadDefaultStrategy() throws IOException {
-		Logger.info(this, "Download default strategy!");
-		final String sourceFileName = in.readUTF();
-		final File sourceFile = new File(JPService.getProperty(SetStrategyServerSourceDirectory.class).getValue(), sourceFileName);
-		final int fileByteLenght = in.readInt();
-		final byte[] fileBytes = new byte[fileByteLenght];
-		IOUtils.readFully(in, fileBytes);
-		FileUtils.writeByteArrayToFile(sourceFile, fileBytes);
-	}
+    private void uploadTeams() throws CouldNotPerformException, IOException {
+        LOGGER.info("Upload teams...");
+        List<TeamData> teams = Team.loadAll();
+        out.writeInt(teams.size());
+        for (TeamData teamData : teams) {
+            out.writeObject(teamData);
+        }
+    }
 
-	private void uploadStrategies() throws CouldNotPerformException, IOException {
-		Logger.info(this, "Upload strategies...");
-		final byte[] jarBytes = JarController.getInstance().getJarAndBuild();
-		out.writeInt(jarBytes.length);
-		IOUtils.write(jarBytes, out);
-		out.flush();
-	}
+    private void downloadDefaultStrategy() throws CouldNotPerformException {
+        try {
+            LOGGER.info("Download default strategy!");
+            final String sourceFileName = in.readUTF();
+            final File sourceFile = new File(JPService.getProperty(JPStrategyServerSourceDirectory.class).getValue(), sourceFileName);
+            final int fileByteLenght = in.readInt();
+            final byte[] fileBytes = new byte[fileByteLenght];
+            IOUtils.readFully(in, fileBytes);
+            FileUtils.writeByteArrayToFile(sourceFile, fileBytes);
+        } catch (JPNotAvailableException | IOException ex) {
+            throw new CouldNotPerformException("COuld not download default strategy!", ex);
+        }
+    }
+
+    private void uploadStrategies() throws CouldNotPerformException, IOException {
+        LOGGER.info("Upload strategies...");
+        final byte[] jarBytes = JarController.getInstance().getJarAndBuild();
+        out.writeInt(jarBytes.length);
+        IOUtils.write(jarBytes, out);
+        out.flush();
+    }
 }
