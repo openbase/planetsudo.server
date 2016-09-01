@@ -52,6 +52,6 @@ public class JPStrategyJar extends AbstractJPFile {
 
 	@Override
 	protected File getPropertyDefaultValue() throws JPNotAvailableException {
-		return new File(JPService.getProperty(JPBuildTargetDirectory.class).getValue().getAbsolutePath()+"/strategy-2.0.0-SNAPSHOT.jar");
+		return new File(JPService.getProperty(JPBuildTargetDirectory.class).getValue().getAbsolutePath()+"/planetsudo.strategy-3.0.0-SNAPSHOT.jar");
 	}
 }
