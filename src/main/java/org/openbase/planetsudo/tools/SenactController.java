@@ -56,7 +56,7 @@ public class SenactController implements SenactInstanceInterface {
 
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(SenactController.class);
 
-    private SenactServerService senactServerService;
+    private final SenactServerService senactServerService;
     private SenactClientConnection senactClientConnection;
     private int lightIntensity = 0;
     private MotionState motionState = MotionState.Unknown;
@@ -74,6 +74,7 @@ public class SenactController implements SenactInstanceInterface {
         switch (mode) {
             case NewPackage:
                 setColor(S_BLUE);
+                playSound(Sound.Monkey);
                 break;
             case Compile:
                 setColor(S_GREEN);
@@ -90,9 +91,15 @@ public class SenactController implements SenactInstanceInterface {
         senactServerService = new SenactServerService(this);
     }
 
+    @Override
     public void setSenactClientConnection(SenactClientConnection senactClientConnection) {
         this.senactClientConnection = senactClientConnection;
-        playSound(Sound.Monkey);
+        playSound(Sound.S1);
+//        Thread.sleep(50);
+        playSound(Sound.S2);
+//        Thread.sleep(05);
+        playSound(Sound.S3);
+//        Thread.sleep(50);
     }
 
     @Override
