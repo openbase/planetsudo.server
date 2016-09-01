@@ -37,6 +37,7 @@ import org.apache.commons.io.IOUtils;
 import org.openbase.jps.exception.JPNotAvailableException;
 import org.openbase.jul.exception.CouldNotPerformException;
 import org.openbase.jul.exception.printer.ExceptionPrinter;
+import org.openbase.jul.schedule.GlobalExecutionService;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -54,7 +55,7 @@ public class PlanetSudoClientHandler implements Runnable {
     protected PlanetSudoClientHandler(final Socket socket) {
         this.socket = socket;
         LOGGER.info("Connecting to Client[" + socket.getInetAddress() + "]");
-        new Thread(this, "ClientConnectionHandler").start();
+        GlobalExecutionService.execute(this);
     }
 
     @Override
