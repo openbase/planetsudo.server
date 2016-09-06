@@ -21,7 +21,7 @@ public class StrategieNoxus extends AbstractStrategy {
 	}
 
 	/**
-	 * Wie viele Agenten sollen erstellt werde wird hier angegeben.
+	 * Hier wird angegeben wie viele Agenten dem Team zur Verfügung stehen sollen.
 	 * @return Anzahl der Agenten
 	 */
 	@Override
