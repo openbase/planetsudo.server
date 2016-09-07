@@ -9,7 +9,7 @@ import org.openbase.planetsudo.level.levelobjects.Resource.ResourceType;
 
 /**
  *
- * @author divine
+ * @author <a href="mailto:divine@openbase.org">Divine Threepwood</a
  */
 public class DivineStrategy extends AbstractStrategy {
 
