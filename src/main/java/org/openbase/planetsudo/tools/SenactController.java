@@ -77,11 +77,11 @@ public class SenactController implements SenactInstanceInterface {
     public void setServerMode(final ServerMode mode) {
         switch (mode) {
             case NewPackage:
-                setColor(S_BLUE);
+                setColor(S_GREEN);
                 playSound(Sound.Monkey);
                 break;
             case Compile:
-                setColor(S_GREEN);
+                setColor(S_BLUE);
                 playSound(Sound.Confirm);
                 break;
             case Error:
