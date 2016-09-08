@@ -38,7 +38,7 @@ import org.openbase.jps.exception.JPNotAvailableException;
 
 /**
  *
- * @author divine
+ * @author <a href="mailto:divine@openbase.org">Divine Threepwood</a>
  */
 public class JPStrategyModuleDirectory extends AbstractJPDirectory {
 	public final static String[] COMMAND_IDENTIFIERS = {"--stategyModule"};

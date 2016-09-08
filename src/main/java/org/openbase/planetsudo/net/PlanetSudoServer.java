@@ -26,7 +26,7 @@ package org.openbase.planetsudo.net;
  * #L%
  */
 import org.openbase.jps.core.JPService;
-import org.openbase.planetsudo.game.LevelReciver;
+import org.openbase.planetsudo.game.LevelReceiver;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.logging.Level;
@@ -76,7 +76,7 @@ public class PlanetSudoServer implements Runnable {
                 try {
                     Thread.sleep(10000);
                 } catch (InterruptedException ex) {
-                    java.util.logging.Logger.getLogger(LevelReciver.class.getName()).log(Level.SEVERE, null, ex);
+                    java.util.logging.Logger.getLogger(LevelReceiver.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             LOGGER.info("Server online.");

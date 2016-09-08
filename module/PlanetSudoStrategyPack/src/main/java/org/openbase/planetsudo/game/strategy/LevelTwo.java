@@ -33,7 +33,7 @@ import org.openbase.planetsudo.level.levelobjects.Resource;
 
 /**
  *
- * @author divine
+ * @author <a href="mailto:divine@openbase.org">Divine Threepwood</a>
  */
 public class LevelTwo extends AbstractStrategy {
 
@@ -45,7 +45,7 @@ public class LevelTwo extends AbstractStrategy {
 	}
 
 	/**
-	 * Wie viele Agenten sollen erstellt werde wird hier angegeben.
+	 * Hier wird angegeben wie viele Agenten dem Team zur Verfügung stehen sollen.
 	 * @return Anzahl der Agenten
 	 */
 	@Override
