@@ -30,12 +30,14 @@ import org.openbase.bco.senact.api.SenactInstanceInterface;
 import org.openbase.bco.senact.api.SenactServerService;
 import org.openbase.bco.senact.api.commands.BuzzerCommand;
 import org.openbase.bco.senact.api.commands.BuzzerCommand.Sound;
+import org.openbase.bco.senact.api.commands.ByeCommand;
 import org.openbase.bco.senact.api.commands.MotionDetectorCommand;
 import org.openbase.bco.senact.api.commands.MotionDetectorCommand.MotionState;
 import org.openbase.bco.senact.api.commands.RGBLightCommand;
 import org.openbase.bco.senact.api.data.Color;
 import org.openbase.jul.exception.CouldNotPerformException;
 import org.openbase.jul.exception.printer.ExceptionPrinter;
+import org.openbase.jul.schedule.Timeout;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -44,6 +46,7 @@ import org.slf4j.LoggerFactory;
  */
 public class SenactController implements SenactInstanceInterface {
 
+    private static final Color S_BLACK = new Color(0, 0, 0);
     private static final Color S_GREEN = new Color(0, 255, 0);
     private static final Color S_BLUE = new Color(0, 0, 255);
     private static final Color S_RED = new Color(255, 0, 0);
@@ -60,6 +63,7 @@ public class SenactController implements SenactInstanceInterface {
     private SenactClientConnection senactClientConnection;
     private int lightIntensity = 0;
     private MotionState motionState = MotionState.Unknown;
+    private Timeout ledTimeout;
 
     private static SenactController instance;
 
@@ -88,7 +92,26 @@ public class SenactController implements SenactInstanceInterface {
     }
 
     private SenactController() {
-        senactServerService = new SenactServerService(this);
+        this.senactServerService = new SenactServerService(this);
+        this.ledTimeout = new Timeout(900000) {
+            @Override
+            public void expired() throws InterruptedException {
+                switchLedOff();
+            }
+        };
+        ledTimeout.start();
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+
+            @Override
+            public void run() {
+                switchLedOff();
+                disconect();
+            }
+        });
+    }
+    
+    public void switchLedOff() {
+        setColor(S_BLACK);
     }
 
     @Override
@@ -118,11 +141,26 @@ public class SenactController implements SenactInstanceInterface {
                 throw new CouldNotPerformException("Senact not conneced!");
             }
             senactClientConnection.sendCommand(new RGBLightCommand(color));
+
+            if (!color.equals(S_BLACK)) {
+                ledTimeout.restart();
+            }
         } catch (CouldNotPerformException ex) {
             ExceptionPrinter.printHistory(new CouldNotPerformException("Could not control senact!", ex), LOGGER);
         }
     }
 
+    public void disconect() {
+        try {
+            if (senactClientConnection == null) {
+                throw new CouldNotPerformException("Senact not conneced!");
+            }
+            senactClientConnection.sendCommand(new ByeCommand());
+        } catch (CouldNotPerformException ex) {
+            ExceptionPrinter.printHistory(new CouldNotPerformException("Could not control senact!", ex), LOGGER);
+        }
+    }
+    
     public void playSound(final Sound sound) {
         try {
             if (senactClientConnection == null) {

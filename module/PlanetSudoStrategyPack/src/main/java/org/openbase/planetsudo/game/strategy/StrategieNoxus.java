@@ -10,7 +10,7 @@ import org.openbase.planetsudo.level.levelobjects.Resource;
 
 /**
  *
- * @author <a href="mailto:divine@openbase.org">Divine Threepwood</a
+ * @author <a href="mailto:divine@openbase.org">Divine Threepwood</a>
  */
 public class StrategieNoxus extends AbstractStrategy {
 
