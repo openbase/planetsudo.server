@@ -1,11 +1,11 @@
 {
-  "name" : "TeamSascha",
+  "name" : "Team Weißweinschorle",
   "teamColor" : {
-    "red" : 102,
-    "green" : 255,
-    "blue" : 102,
+    "red" : 255,
+    "green" : 0,
+    "blue" : 255,
     "alpha" : 255,
-    "rgb" : -10027162,
+    "rgb" : -65281,
     "colorSpace" : {
       "type" : 5,
       "numComponents" : 3,
@@ -24,6 +24,6 @@
     },
     "transparency" : 1
   },
-  "strategy" : "SaschaStrategy",
-  "members" : [ "Sascha", "" ]
+  "strategy" : "VollGut",
+  "members" : [ "MaMLP", "" ]
 }

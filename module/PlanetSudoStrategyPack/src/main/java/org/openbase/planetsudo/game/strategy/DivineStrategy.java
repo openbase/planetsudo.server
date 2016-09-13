@@ -46,7 +46,7 @@ public class DivineStrategy extends AbstractStrategy {
      */
     @Override
     protected int loadAgentCount() {
-        return 999;
+        return 7;
     }
 
     @Override
@@ -82,10 +82,10 @@ public class DivineStrategy extends AbstractStrategy {
             }
         });
         //-------------------------------------------->
-        createRule(new Rule("See Resources") {
+        createRule(new Rule("See Resources", ALL, NOT_COMMANDER) {
             @Override
             protected boolean constraint() {
-                return !agent.isCommander() && agent.seeResource();
+                return agent.seeResource();
             }
 
             @Override
@@ -204,7 +204,7 @@ public class DivineStrategy extends AbstractStrategy {
 
             @Override
             protected void action() {
-                agent.deployTower(Tower.TowerType.ObservationTower);
+                agent.erectTower(Tower.TowerType.ObservationTower);
             }
         });
         //-------------------------------------------->
@@ -488,6 +488,18 @@ public class DivineStrategy extends AbstractStrategy {
             }
         });
         //-------------------------------------------->
+        createRule(new Rule("Erect Tower", COMMANDER) {
+            @Override
+            protected boolean constraint() {
+                return agent.hasTower() && agent.seeResource();
+            }
+
+            @Override
+            protected void action() {
+                agent.erectTower(Tower.TowerType.DefenceTower);
+            }
+        });
+        //-------------------------------------------->
         createRule(new Rule("Follow Wall", ALPHA) {
             @Override
             protected boolean constraint() {
@@ -525,6 +537,30 @@ public class DivineStrategy extends AbstractStrategy {
 			}
 		});
 		//-------------------------------------------->
+		createRule(new Rule("Collect APs") {
+			@ Override
+			protected boolean constraint() {
+				return agent.getActionPoints() < 1000;
+			}
+
+			@ Override
+			protected void action() {
+                // to nothing
+			}
+		});
+		//-------------------------------------------->
+        createRule(new Rule("See Resources and Place Marker", ALL) {
+            @Override
+            protected boolean constraint() {
+                return agent.seeResource() && !mothership.isMarkerDeployed();
+            }
+
+            @Override
+            protected void action() {
+                agent.deployMarker();
+            }
+        });
+        //-------------------------------------------->
     }
 
 }

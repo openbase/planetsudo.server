@@ -1,11 +1,11 @@
 {
-  "name" : "GravityGang",
+  "name" : "FeuchtePflegetuecher",
   "teamColor" : {
-    "red" : 102,
-    "green" : 0,
-    "blue" : 102,
+    "red" : 255,
+    "green" : 255,
+    "blue" : 153,
     "alpha" : 255,
-    "rgb" : -10092442,
+    "rgb" : -103,
     "colorSpace" : {
       "type" : 5,
       "numComponents" : 3,
@@ -24,6 +24,6 @@
     },
     "transparency" : 1
   },
-  "strategy" : "DivineStrategy",
-  "members" : [ "Divine Threepwood", "" ]
+  "strategy" : "gruenmuckel",
+  "members" : [ "Marc", "" ]
 }

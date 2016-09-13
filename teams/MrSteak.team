@@ -1,11 +1,11 @@
 {
-  "name" : "TeamSascha",
+  "name" : "MrSteak",
   "teamColor" : {
-    "red" : 102,
-    "green" : 255,
-    "blue" : 102,
+    "red" : 255,
+    "green" : 153,
+    "blue" : 255,
     "alpha" : 255,
-    "rgb" : -10027162,
+    "rgb" : -26113,
     "colorSpace" : {
       "type" : 5,
       "numComponents" : 3,
@@ -24,6 +24,6 @@
     },
     "transparency" : 1
   },
-  "strategy" : "SaschaStrategy",
-  "members" : [ "Sascha", "" ]
+  "strategy" : "MrSteakStrategy",
+  "members" : [ "MAxi", "" ]
 }
