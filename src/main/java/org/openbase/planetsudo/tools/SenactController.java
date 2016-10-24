@@ -26,7 +26,7 @@ package org.openbase.planetsudo.tools;
  * #L%
  */
 import org.openbase.bco.senact.api.SenactClientConnection;
-import org.openbase.bco.senact.api.SenactInstanceInterface;
+import org.openbase.bco.senact.api.SenactInstance;
 import org.openbase.bco.senact.api.SenactServerService;
 import org.openbase.bco.senact.api.commands.BuzzerCommand;
 import org.openbase.bco.senact.api.commands.BuzzerCommand.Sound;
@@ -44,7 +44,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author <a href="mailto:DivineThreepwood@gmail.com">Divine Threepwood</a>
  */
-public class SenactController implements SenactInstanceInterface {
+public class SenactController implements SenactInstance {
 
     private static final Color S_BLACK = new Color(0, 0, 0);
     private static final Color S_GREEN = new Color(0, 255, 0);
