@@ -43,9 +43,9 @@
     <packaging>jar</packaging>
 
     <scm>
-        <connection>scm:git:git@github.com/openbase/planetsudo.server.git</connection>
-        <developerConnection>scm:git:git@github.com/openbase/planetsudo.server.git</developerConnection>
-        <url>git@github.com/openbase/planetsudo.server.git</url>
+        <connection>scm:git:https://github.com/openbase/planetsudo.server.git</connection>
+        <developerConnection>scm:git:https://github.com/openbase/planetsudo.server.git</developerConnection>
+        <url>https://github.com/openbase/planetsudo.server.git</url>
     </scm>
     
     <build>

@@ -63,7 +63,7 @@ public class SenactController implements SenactInstanceInterface {
     private SenactClientConnection senactClientConnection;
     private int lightIntensity = 0;
     private MotionState motionState = MotionState.Unknown;
-    private Timeout ledTimeout;
+    private final Timeout ledTimeout;
 
     private static SenactController instance;
 
