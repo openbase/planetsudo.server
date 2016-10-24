@@ -64,9 +64,9 @@ public class SaschaStrategy extends AbstractStrategy {
      */
    @Override
     protected void loadSwatTeams() {
-        createSwat(ALPHA, 1);
-        createSwat(BRAVO, 2, 3);
-        createSwat(CHARLIE, 4, 5);
+//        createSwat(ALPHA, 1);
+//        createSwat(BRAVO, 2, 3);
+//        createSwat(CHARLIE, 4, 5);
     }
 
     /**
@@ -136,7 +136,7 @@ public class SaschaStrategy extends AbstractStrategy {
            }
        });
 //-------------------------------------------->
-       createRule(new Rule("Ressource da?", CHARLIE) {
+       createRule(new Rule("Ressource da?", ALL) {
            @Override
            protected boolean constraint() {
                return agent.seeResource();
@@ -148,7 +148,7 @@ public class SaschaStrategy extends AbstractStrategy {
            }
        });
 //-------------------------------------------->
-       createRule(new Rule("Ressource nehmen", CHARLIE) {
+       createRule(new Rule("Ressource nehmen", ALL) {
            @Override
            protected boolean constraint() {
                return agent.isTouchingResource(Resource.ResourceType.DoublePoints) ||  agent.isTouchingResource(Resource.ResourceType.Normal)
@@ -171,7 +171,7 @@ public class SaschaStrategy extends AbstractStrategy {
 
 
 //-------------------------------------------->
-       createRule(new Rule("Ressource und zum MS", CHARLIE) {
+       createRule(new Rule("Ressource und zum MS", ALL) {
            @Override
            protected boolean constraint() {
                return agent.isCarringResource() && !agent.isAtMothership();
@@ -183,7 +183,7 @@ public class SaschaStrategy extends AbstractStrategy {
            }
        });
 //-------------------------------------------->
-       createRule(new Rule("Ressource ablegen am MS", CHARLIE) {
+       createRule(new Rule("Ressource ablegen am MS", ALL) {
            @Override
            protected boolean constraint() {
                return agent.isCarringResource() && agent.isAtMothership();
@@ -208,7 +208,7 @@ public class SaschaStrategy extends AbstractStrategy {
        });
 
 //-------------------------------------------->
-       createRule(new Rule("MS MARKER",BRAVO) {
+       createRule(new Rule("MS MARKER",ALL) {
            @Override
            protected boolean constraint() {
                return agent.seeMarker();
@@ -220,7 +220,7 @@ public class SaschaStrategy extends AbstractStrategy {
            }
        });
 //-------------------------------------------->
-       createRule(new Rule("Feindkontakt MS", BRAVO) {
+       createRule(new Rule("Feindkontakt MS", ALL) {
            @Override
            protected boolean constraint() {
                return agent.seeAdversaryMothership();

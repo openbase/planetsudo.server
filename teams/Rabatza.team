@@ -1,17 +1,17 @@
 {
-  "name" : "MarcTest",
+  "name" : "Rabatza",
   "teamColor" : {
-    "red" : 102,
-    "green" : 255,
-    "blue" : 51,
+    "red" : 0,
+    "green" : 153,
+    "blue" : 153,
     "alpha" : 255,
-    "rgb" : -10027213,
+    "rgb" : -16737895,
     "colorSpace" : {
       "type" : 5,
       "numComponents" : 3,
       "profile" : {
-        "mediaWhitePoint" : [ 0.9504547, 1.0, 1.0890503 ],
         "matrix" : [ [ 0.43606567, 0.3851471, 0.1430664 ], [ 0.2224884, 0.71687317, 0.06060791 ], [ 0.013916016, 0.097076416, 0.71409607 ] ],
+        "mediaWhitePoint" : [ 0.9504547, 1.0, 1.0890503 ],
         "majorVersion" : 2,
         "minorVersion" : 16,
         "profileClass" : 1,
@@ -24,6 +24,6 @@
     },
     "transparency" : 1
   },
-  "strategy" : "MarctestStategy",
-  "members" : [ "Marc", "" ]
+  "strategy" : "Attack",
+  "members" : [ "Drecknuss (Davin)", "" ]
 }

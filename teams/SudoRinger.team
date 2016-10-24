@@ -1,11 +1,11 @@
 {
-  "name" : "GravityGang",
+  "name" : "SudoRinger",
   "teamColor" : {
-    "red" : 102,
-    "green" : 0,
-    "blue" : 102,
+    "red" : 255,
+    "green" : 51,
+    "blue" : 51,
     "alpha" : 255,
-    "rgb" : -10092442,
+    "rgb" : -52429,
     "colorSpace" : {
       "type" : 5,
       "numComponents" : 3,
@@ -24,6 +24,6 @@
     },
     "transparency" : 1
   },
-  "strategy" : "DivineStrategy",
-  "members" : [ "Divine Threepwood", "" ]
+  "strategy" : "StrategyNumeroUno",
+  "members" : [ "TheDesmador", "" ]
 }

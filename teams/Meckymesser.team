@@ -1,11 +1,11 @@
 {
-  "name" : "TeamSascha",
+  "name" : "Meckymesser",
   "teamColor" : {
-    "red" : 102,
-    "green" : 255,
-    "blue" : 102,
+    "red" : 0,
+    "green" : 204,
+    "blue" : 204,
     "alpha" : 255,
-    "rgb" : -10027162,
+    "rgb" : -16724788,
     "colorSpace" : {
       "type" : 5,
       "numComponents" : 3,
@@ -24,6 +24,6 @@
     },
     "transparency" : 1
   },
-  "strategy" : "SaschaStrategy",
-  "members" : [ "Sascha", "" ]
+  "strategy" : "Schnitzel",
+  "members" : [ "Messer", "" ]
 }

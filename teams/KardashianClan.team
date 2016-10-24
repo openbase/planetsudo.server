@@ -1,11 +1,11 @@
 {
-  "name" : "TeamSascha",
+  "name" : "KardashianClan",
   "teamColor" : {
-    "red" : 102,
+    "red" : 0,
     "green" : 255,
-    "blue" : 102,
+    "blue" : 0,
     "alpha" : 255,
-    "rgb" : -10027162,
+    "rgb" : -16711936,
     "colorSpace" : {
       "type" : 5,
       "numComponents" : 3,
@@ -24,6 +24,6 @@
     },
     "transparency" : 1
   },
-  "strategy" : "SaschaStrategy",
-  "members" : [ "Sascha", "" ]
+  "strategy" : "KimKardashian",
+  "members" : [ "Fishman(Tim)", "" ]
 }
