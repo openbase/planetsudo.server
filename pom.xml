@@ -121,6 +121,9 @@
                     <licenseName>gpl_v3</licenseName>
                     <failOnMissingHeader>true</failOnMissingHeader>
                     <failOnNotUptodateHeader>true</failOnNotUptodateHeader>
+                    <canUpdateCopyright>true</canUpdateCopyright>
+                    <canUpdateDescription>true</canUpdateDescription>
+                    <canUpdateLicense>true</canUpdateLicense>
                     <roots>
                         <root>src/main/java</root>
                         <root>src/test</root>
