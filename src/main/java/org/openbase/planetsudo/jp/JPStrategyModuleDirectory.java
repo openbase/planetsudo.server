@@ -9,7 +9,7 @@ package org.openbase.planetsudo.jp;
  * #%L
  * PlanetSudo Server
  * %%
- * Copyright (C) 2009 - 2016 openbase.org
+ * Copyright (C) 2009 - 2017 openbase.org
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
