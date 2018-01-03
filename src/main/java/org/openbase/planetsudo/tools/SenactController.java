@@ -8,7 +8,7 @@ package org.openbase.planetsudo.tools;
  * #%L
  * PlanetSudo Server
  * %%
- * Copyright (C) 2009 - 2017 openbase.org
+ * Copyright (C) 2009 - 2018 openbase.org
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -99,7 +99,13 @@ public class SenactController implements SenactInstance {
                 switchLedOff();
             }
         };
-        ledTimeout.start();
+
+        try {
+            ledTimeout.start();
+        } catch (CouldNotPerformException ex) {
+            ExceptionPrinter.printHistory("Could not strat led reset timer!", ex, LOGGER);
+        }
+
         Runtime.getRuntime().addShutdownHook(new Thread() {
 
             @Override
@@ -109,7 +115,7 @@ public class SenactController implements SenactInstance {
             }
         });
     }
-    
+
     public void switchLedOff() {
         setColor(S_BLACK);
     }
@@ -160,7 +166,7 @@ public class SenactController implements SenactInstance {
             ExceptionPrinter.printHistory(new CouldNotPerformException("Could not control senact!", ex), LOGGER);
         }
     }
-    
+
     public void playSound(final Sound sound) {
         try {
             if (senactClientConnection == null) {
