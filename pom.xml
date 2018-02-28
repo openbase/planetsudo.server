@@ -258,7 +258,7 @@
         <dependency>
             <groupId>org.openbase</groupId>
             <artifactId>bco.senact.api</artifactId>
-            <version>(1.6,1.7-alpha]</version>
+            <version>1.6-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
